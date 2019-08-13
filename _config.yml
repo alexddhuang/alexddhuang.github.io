@@ -1,4 +1,41 @@
-plugin:
+title: Alexddhuang's Blog
+author: Alexander D Huang
+email: alexddhuang@gmail.com
+
+permalink: /:year/:month/:day/:title.html
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+minima:
+  date_format: "%b %-d, %Y"
+  social_links:
+    twitter: alxdhuang
+    github: alexddhuang
+    stackoverflow: "11629344"
+    facebook: alexander.huang.3597
+    instagram: alexddhuang
+    rss: rss
+
+disqus:
+  shortname: alexddhuang
+
+google_analytics: UA-141815461-1
+
+show_excerpts: true
+
+plugins:
   - jekyll-remote-theme
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
 remote_theme: alexddhuang/minima@alexddhuang
