@@ -1,0 +1,4 @@
+plugin:
+  - jekyll-remote-theme
+
+remote_theme: alexddhuang/minima@alexddhuang
