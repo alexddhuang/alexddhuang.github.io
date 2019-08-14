@@ -291,3 +291,109 @@ public void ReactToHit()
     StartCoroutine(Die());
 }
 ```
+
+#### 3.4 Spawning enemy prefabs
+
+We use an invisible `SceneController` to spawn enemies:
+
+```c#
+public class SceneController : MonoBehaviour
+{
+    [SerializeField] private GameObject enemyPrefab;
+    private GameObject _enemy;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (_enemy == null) {
+            _enemy = Instantiate(enemyPrefab) as GameObject;
+            _enemy.transform.position = new Vector3(0, 1, 0);
+            float angle = Random.Range(0, 360);
+            _enemy.transform.Rotate(0, angle, 0);
+        }
+    }
+}
+```
+
+We can immediately ask a question: Is it possible to happen that `_enemy == null` since there is no place where we assign a `null` to the `_enemy` reference? Recall that in [`ReactiveTarget.Die()`](#32-scripting-reactive-targets), it destroys itself by invoking [`Destroy(this.gameObject)`](https://docs.unity3d.com/ScriptReference/Object.Destroy.html). This method tells the game engine to remove a game object from the scene, but the object may be still available in the memory since C# uses garbage collection to manage memory. However, Unity also overloads the `==` operator to return true when checking for `null` in this situation. Maybe, Unity should provides a property for each game object to indicate whether it is destroyed, so that `_enemy == null` can be replaced by a less confused expression `_enemy.isDestroyed`.
+
+What if we want to spawn not only one enemy?
+
+```c#
+void Start()
+{
+    StartCoroutine(SpawnEnemies());
+}
+
+// Update is called once per frame
+void Update()
+{
+
+}
+
+private IEnumerator SpawnEnemies() {
+    GameObject enemy = Instantiate(enemyPrefab) as GameObject;
+    enemy.transform.position = new Vector3(0, 1, 0);
+    float angle = Random.Range(0, 360);
+    enemy.transform.Rotate(0, angle, 0);
+
+    yield return new WaitForSeconds(3f);
+
+    StartCoroutine(SpawnEnemies());
+}
+```
+
+#### 3.5 Shooting by instantiating objects
+
+Shooting with raycasting is instantaneous, but this time enemies are going to emit fireballs that fly through the air, so that the player has a chance to dodge out of the way.
+
+First, create a prefab named `Fireball`, and create a script also named `Fireball` bound to it.
+
+```c#
+public class Fireball : MonoBehaviour
+{
+    public float speed = 10.0f;
+    public int damage = 1;
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.Translate(0, 0, speed * Time.deltaTime);
+    }
+
+    void OnTriggerEnter(Collider other) {
+        PlayerCharacter player = other.GetComponent<PlayerCharacter>();
+        if (player != null) {
+            Debug.Log("Player hit");
+            player.Hurt(damage);
+        }
+        Destroy(this.gameObject);
+    }
+}
+```
+
+To make `OnTriggerEnter` will be called, we have to check the Is Trigger of the Collider component on the fireball.
+
+Next, modify `WanderingAI` to fire when it discovers the player:
+
+```c#
+if (Physics.SphereCast(ray, 0.75f, out hit)) {
+    if (hit.distance < obstacleRange) {
+        GameObject hitObject = hit.transform.gameObject;
+        if (hitObject.GetComponent<PlayerCharacter>()) {
+            _fireball = Instantiate(fireballPrefab) as GameObject;
+            _fireball.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
+            _fireball.transform.rotation = transform.rotation;
+        } else {
+            float angle = Random.Range(-110, 110);
+            transform.Rotate(0, angle, 0);
+        }
+    }
+}
+```
