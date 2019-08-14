@@ -132,3 +132,162 @@ public class FPSInput : MonoBehaviour
 ```
 
 We invoke [`Vector3.ClampMagnitude`](https://docs.unity3d.com/ScriptReference/Vector3.ClampMagnitude.html) is promising the magnitude of velocity won't exceed the set speed. [`Transform.TransformDirection`](https://docs.unity3d.com/ScriptReference/Transform.TransformDirection.html) transforms a direction from local space to world space. Then we let `velocity.y` equal to zero so that the player will always stick on the ground.
+
+### Chapter 3. Adding enemies and projectiles to the 3D game
+
+#### 3.1 Shooting via raycasts
+
+> Raycasting is when you create a ray and then determine what intersects that ray.
+
+`RayShooter` is a script bound to the camera:
+
+```c#
+public class RayShooter : MonoBehaviour
+{
+    private Camera _camera;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        _camera = GetComponent<Camera>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0)) {
+            Vector3 point = new Vector3(_camera.pixelWidth / 2, _camera.pixelHeight / 2, 0);
+            Ray ray = _camera.ScreenPointToRay(point);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit)) {
+                Debug.Log("Hit " + hit.point);
+            }
+        }
+    }
+}
+```
+
+[`ScreenPointToRay`](https://docs.unity3d.com/ScriptReference/Camera.ScreenPointToRay.html) returns a ray starting on the near plane of the camera and going from camera through a screen point. Resulting ray is in world space. [`Physics.Raycast`](https://docs.unity3d.com/ScriptReference/Physics.Raycast.html) does the hard calculation of detecting intersections.
+
+Next step, create a sphere at the hit point:
+
+```c#
+void Update()
+{
+    if (Input.GetMouseButtonDown(0)) {
+        Vector3 point = new Vector3(_camera.pixelWidth / 2, _camera.pixelHeight / 2, 0);
+        Ray ray = _camera.ScreenPointToRay(point);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit)) {
+            Debug.Log("Hit " + hit.point);
+            StartCoroutine(SphereIndicator(hit.point));
+        }
+    }
+}
+
+private IEnumerator SphereIndicator(Vector3 pos) 
+{
+    GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+    sphere.transform.position = pos;
+
+    yield return new WaitForSeconds(1.0f);
+
+    Destroy(sphere);
+}
+```
+
+[`StartCoroutine`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.StartCoroutine.html) starts a coroutine. The execution of a coroutine can be paused at any point using the `yield` statement. When a `yield` statement is used, the coroutine will pause execution and automatically resume at the next frame.
+
+#### 3.2 Scripting reactive targets
+
+`ReactiveTarget`:
+
+```c#
+public class ReactiveTarget : MonoBehaviour
+{
+    public void ReactToHit()
+    {
+        StartCoroutine(Die());
+    }
+
+    private IEnumerator Die() 
+    {
+        this.transform.Rotate(-75, 0, 0);
+
+        yield return new WaitForSeconds(1.5f);
+        
+        Destroy(this.gameObject);
+    }
+}
+```
+
+Then, modify `RayChooter` to invoke `ReactToHit` when a ray hit an enemy.
+
+```c#
+if (Physics.Raycast(ray, out hit)) {
+    GameObject hitObject = hit.transform.gameObject;
+    ReactiveTarget target = hitObject.GetComponent<ReactiveTarget>();
+    if (target != null) {
+        Debug.Log("Hit " + hit.point);
+        target.ReactToHit();
+    } else {
+        StartCoroutine(SphereIndicator(hit.point));
+    }
+}
+```
+
+#### 3.3 Basic wandering AI
+
+`WanderingAI`:
+
+```c#
+public class WanderingAI : MonoBehaviour
+{
+    public float speed = 3.0f;
+    public float obstacleRange = 5.0f;
+
+    private bool _alive;
+
+    public void SetAlive(bool alive) {
+        _alive = alive;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        _alive = true;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (!_alive) return;
+        
+        transform.Translate(0, 0, speed * Time.deltaTime);
+
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hit;
+        if (Physics.SphereCast(ray, 0.75f, out hit)) {
+            if (hit.distance < obstacleRange) {
+                float angle = Random.Range(-110, 110);
+                transform.Rotate(0, angle, 0);
+            }
+        }
+    }   
+}
+```
+
+Being different from `Raycast`, which casts a point along a ray, [`Physics.SphereCast`](https://docs.unity3d.com/ScriptReference/Physics.SphereCast.html) casts a sphere along a ray.
+
+Next step, in `ReactiveTarget.ReactToHit`, we need to set the wandering AI not alive so that it won't continue to move:
+
+```c#
+public void ReactToHit()
+{
+    WanderingAI ai = GetComponent<WanderingAI>();
+    if (ai != null) {
+        ai.SetAlive(false);
+    }
+    StartCoroutine(Die());
+}
+```
