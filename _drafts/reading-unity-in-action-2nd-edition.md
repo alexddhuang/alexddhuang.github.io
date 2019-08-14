@@ -9,38 +9,9 @@ toc: true
 
 ## Part 1. First steps
 
-### Chapter 1. Getting to know Unity
-
-#### What make Unity so great?
-
-> Unity has two main advantages over similar cutting-edge game development tools: **an extremely productive visual workflow** and **a high degree of cross-platform support**.
-
-> A third, more subtle, benefit comes from the **modular component system** used to construct game objects.
-
-A component system is more flexible than a class hierarchy.
-
-#### Operating the Unity editor
-
-More information can be found on the [official docs](https://docs.unity3d.com/Manual/UnityOverview.html).
-
-#### Programming in Unity
-
-All code execution in Unity starts from scripts linked to an object in the scene. Only those scripts inherited from `MonoBehaviour` can be components. You can overrides some methods of `MonoBehaviour` to do game logic. These methods include
-
-- `Start()`, called once when the object becomes active (which is generally as soon as the level with that object has loaded).
-- `Update()`, called every frame.
-
-#### Comparing C# and JavaScript
-
-C# is strongly typed, whereas JavaScript is not. [JavaScript was removed from Unity](https://blogs.unity3d.com/2017/08/11/unityscripts-long-ride-off-into-the-sunset/).
-
 ### Chapter 2. Building a demo that puts you in 3D space
 
-#### Understanding 3D coordinate space 
-
-Unity uses left-handed 3D dimensional Descartes coordinates
-
-#### Putting a player in a scene
+#### 2.2 Begin the project: place objects in the scene
 
 We use a Capsule game object to represent the player in this chapter. The Capsule object has a default [Capsule Collider](https://docs.unity3d.com/Manual/class-CapsuleCollider.html) component, we need to replace it with the [Character Controller](https://docs.unity3d.com/Manual/class-CharacterController.html) componenet. Why? 
 
@@ -48,7 +19,7 @@ We use a Capsule game object to represent the player in this chapter. The Capsul
 > 
 > -- [Character Controller \| Unity Docs](https://docs.unity3d.com/Manual/class-CharacterController.html)
 
-#### Writing a script that moves objects
+#### 2.4 Script component for looking around: `MouseLook`
 
 The first script is called `MouseLook`, which handles mouse inputs to rotate the player object.
 
@@ -128,4 +99,36 @@ transform.localEulerAngles = new Vector3(_rotationX, rotationY, 0);
 ```
 
 
-#### Implementing FPS controls
+#### 2.5 Keyboard input component: first-person controls
+
+I think the names of variables in the author's original script is not very natural, so I have written my version:
+
+```c#
+public class FPSInput : MonoBehaviour
+{
+    public float speed = 6.0f;
+
+    private CharacterController _charController;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        _charController = GetComponent<CharacterController>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        float velocityX = Input.GetAxis("Horizontal") * speed;
+        float velocityZ = Input.GetAxis("Vertical") * speed;
+        Vector3 velocity = new Vector3(velocityX, 0, velocityZ);
+        velocity = Vector3.ClampMagnitude(velocity, speed);
+        velocity = transform.TransformDirection(velocity);
+        velocity.y = 0;
+        
+        _charController.Move(velocity * Time.deltaTime);
+    }
+}
+```
+
+We invoke [`Vector3.ClampMagnitude`](https://docs.unity3d.com/ScriptReference/Vector3.ClampMagnitude.html) is promising the magnitude of velocity won't exceed the set speed. [`Transform.TransformDirection`](https://docs.unity3d.com/ScriptReference/Transform.TransformDirection.html) transforms a direction from local space to world space. Then we let `velocity.y` equal to zero so that the player will always stick on the ground.
