@@ -97,4 +97,35 @@ transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityHor, 0);
 
 `Input.GetAxis` returns the value (in the range -1 .. 1) of the virtual axis. `Transform.Rotate` applies a roation in the order of z -> x -> y.
 
+Handling the vertical rotation is a little bit complicated:
+
+```c#
+_rotationX -= Input.GetAxis("Mouse Y") * sensitivityVert;
+_rotationX = Mathf.Clamp(_rotationX, minimumVert, maximumVert);
+
+float rotationY = transform.localEulerAngles.y;
+
+transform.localEulerAngles = new Vector3(_rotationX, rotationY, 0);
+```
+
+Because the vertical rotation angle has limits, we need a variable `_rotationX` to record its rotated angle, if it escapes the range, we need to clamp it. That is what done by the first two lines. The next two lines look not very natural, why don't just
+
+```c#
+transform.localEulerAngles.x = _rotationX;
+```
+
+Well, because in fact, `transform.localEulerAngles` is not a property, it is a method, so it returns a temporary vector, which you can't assign a value to it.
+
+Handling horizontal and vertical rotation at the same time is a combination of above code:
+
+```c#
+_rotationX -= Input.GetAxis("Mouse Y") * sensitivityVert;
+_rotationX = Mathf.Clamp(_rotationX, minimumVert, maximumVert);
+
+float rotationY = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityHor;
+
+transform.localEulerAngles = new Vector3(_rotationX, rotationY, 0);
+```
+
+
 #### Implementing FPS controls
