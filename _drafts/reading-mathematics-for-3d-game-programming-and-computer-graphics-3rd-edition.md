@@ -1,7 +1,7 @@
 ---
 title: "Reading Mathematics for 3D Game Programming and Computer Graphics, 3rd Edition"
 categories: IT
-tags: mathematics game-development computer-graphics
+tags: game-mathematics game-development computer-graphics
 toc: true
 ---
 
