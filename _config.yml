@@ -46,3 +46,8 @@ header_pages:
 
 copyright: >    
   © <!--copyyears--> <!--author-->; All rights reserved.
+
+mathjax:
+  enable: true
+  extensions:
+    - "cancel.js"
