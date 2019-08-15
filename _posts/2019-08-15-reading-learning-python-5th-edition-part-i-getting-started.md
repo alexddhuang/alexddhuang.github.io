@@ -1,5 +1,6 @@
 ---
 title: "Reading Learning Python, 5th Edition - Part I. Getting Started"
+date: 2019-08-15 16:13:51 +0800
 category: IT
 tags: python
 toc: true
