@@ -19,3 +19,11 @@ toc: true
 #### Developer Productivity
 
 > Its simple syntax, dynamic typing, lack of compile steps, and built-in toolset allow programmers to develop programs in a fraction of the time needed when using some other tools.
+
+## Chapter 2. How Python Runs Programs
+
+### Program Execution
+
+#### Python’s View
+
+When you run a program, Python first compile your source code into *byte code*. In 3.2 and later,Python saves byte code files in a subdirectory named `__pycache__`.
