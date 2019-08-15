@@ -2,11 +2,8 @@ import os
 from slugify import slugify
 
 def get_files():
-    drafts = os.listdir("_drafts")
-    drafts = ["_drafts/" + f for f in drafts]
-    posts = os.listdir("_posts")
-    posts = ["_posts/" + f for f in posts]
-    files = drafts + posts
+    files = os.listdir("_posts")
+    files = ["_posts/" + f for f in files]
     files = [f for f in files if f[-3:] == ".md"]
     return files
 
