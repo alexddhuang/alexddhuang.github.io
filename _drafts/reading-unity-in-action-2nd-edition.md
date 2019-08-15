@@ -397,3 +397,14 @@ if (Physics.SphereCast(ray, 0.75f, out hit)) {
     }
 }
 ```
+
+### Chapter 4. Developing graphics for your game
+
+#### 4.2 Building basic 3D scenery: whiteboxing
+
+A powerful tool for level editing: [SabreCSG](https://sabrecsg.com/).
+
+#### 4.3 Texture the scene with 2D images
+
+> Technically, textures aren’t applied to geometry directly. Instead, textures can be part of materials, and materials are applied to geometry.
+
