@@ -1,7 +1,7 @@
 ---
 title: "Reading Unity in Action, 2nd Edition"
 category: IT
-tags: unity game-development c#
+tags: unity game-development csharp
 toc: true
 ---
 
