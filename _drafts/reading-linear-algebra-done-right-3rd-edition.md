@@ -32,3 +32,21 @@ A *vector space* is a set $V$ along with an addition on $V$ and a scalar multipl
     $$
     \text{there exists an element } 0 \in V \text{ such that } v + 0 = v \text{ for all } v \in V 
     $$
+
+- *additive inverse*
+
+    $$
+    \text{ for every } v \in V \text{, there exists } w \in V \text{ such that } v + w = 0
+    $$
+
+- *multiplicative identity*
+
+    $$
+    1v = v \text{ for all } v \in V
+    $$
+
+- *distributive properties*
+
+    $$
+    a(u + v) = au + av \text{ and } (a + b)v = av + bv
+    $$
