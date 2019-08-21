@@ -59,3 +59,27 @@ For type safety?
 > The `out` modifier is most commonly used to get multiple return values back from a method.
 
 It seems a little bit redundant.
+
+### Null Operators
+
+#### Null Coalescing Operator
+
+> The `??` operator is the null coalescing operator. It says “If the operand is non-null, give it to me; otherwise, give me a default value.” For example:
+> 
+> ```c#
+> string s1 = null;
+> string s2 = s1 ?? "nothing";   // s2 evaluates to "nothing"
+> ```
+
+It is a syntax sugar of `string s2 = s1 == null ? "nothing" : null`.
+
+#### Null-conditional Operator (C# 6)
+
+> It allows you to call methods and access members just like the standard dot operator, except that if the operand on the left is null, the expression evaluates to `null` instead of throwing a `NullReferenceException`:
+> 
+> ```c#
+> System.Text.StringBuilder sb = null;
+> string s = sb?.ToString(); // No error; s instead evaluates to null
+> ```
+
+It is a syntax sugar of `string s = sb == null ? null : sb.ToString()`.
