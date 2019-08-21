@@ -5,7 +5,7 @@ tags: c
 toc: true
 ---
 
-Here are some notes on [*The C Programming Language*](https://en.wikipedia.org/wiki/The_C_Programming_Language), 2nd Edition (1988) by [Brian Kernighan](https://en.wikipedia.org/wiki/Brian_Kernighan) and [Dennis Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie).
+Here are some notes on [*The C Programming Language*](https://en.wikipedia.org/wiki/The_C_Programming_Language), 2nd Edition (1988) by [Brian Kernighan](https://en.wikipedia.org/wiki/Brian_Kernighan) and [Dennis Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie). Source code are [here](https://github.com/alexddhuang/knrc2e).
 
 ## Preface
 
@@ -47,3 +47,72 @@ In fact, [C is not easy to master](https://www.quora.com/How-easy-is-it-to-learn
 
 Escape `\` and directly print `c`.
 
+### 1.5 Character Input and Output
+
+> The model of input and output supported by the standard library is very simple. Text input or output, regardless of where it originates or where it goes to, is dealt with as streams of characters, A text stream is a sequence of characters divided into lines; each line consists of zero or more characters followed by a new line character. It is the responsibility of the library to make each input or output stream conform to this model; the C programmer using the library need not worry about how lines are represented outside the program.
+
+#### 1.5.1 File Copying
+
+```c
+#include <stdio.h>
+
+main()
+{
+    int c;
+
+    while ((c = getchar()) != EOF)
+        putchar(c);
+}
+```
+
+#### 1.5.2 Character Counting
+
+```c
+#include <stdio.h>
+
+main()
+{
+    double nc;
+
+    for (nc = 0; getchar() != EOF; nc++)
+        ;
+    printf("%.0f\n", nc);
+}
+```
+
+#### 1.5.3 Line Counting
+
+```c
+#include <stdio.h>
+
+main()
+{
+    int c, nl = 0;
+
+    while ((c = getchar()) != EOF)
+        if (c == '\n')
+            nl++;
+    printf("%d\n", nl);
+}
+```
+
+> Exercise 1-8. Write a program to count blanks, tabs, and newlines.
+
+```c
+#include <stdio.h>
+
+main()
+{
+    int c, nb, nt, nl;
+
+    nb = nt = nl = 0;
+    while ((c = getchar()) != EOF)
+        if (c == ' ')
+            nb++;
+        else if (c == '\t')
+            nt++;
+        else if (c == '\n')
+            nl++;
+    printf("%d %d %d\n", nb, nt, nl);
+}
+```
