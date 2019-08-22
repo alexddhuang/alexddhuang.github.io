@@ -2,7 +2,7 @@
 title: "Notes on Tommy Thompson's Pathfinding in Unity Tutorial Series"
 date: 2019-08-19 17:07:04 +0800
 category: IT
-tags: unity csharp game-development
+tags: unity csharp game-dev
 toc: true
 ---
 
