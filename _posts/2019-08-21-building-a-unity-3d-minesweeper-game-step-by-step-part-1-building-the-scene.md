@@ -1,7 +1,7 @@
 ---
 title: "Building a Unity 3D Minesweeper Game Step by Step Part 1: Building the Scene"
 date: 2019-08-21 17:53:49 +0800
-date_modified: 2019-08-22 14:15:57 +0800
+date_modified: 2019-08-22 17:54:17 +0800
 categories: IT
 tags: csharp game-dev unity
 ---
@@ -48,3 +48,4 @@ Now, our first part of this tutorial is done, let's take a rest and drink a cup 
 ## Further Reading
 
 - [Part 2: The Character](/2019/08/22/building-a-unity-3d-minesweeper-game-step-by-step-part-2-the-character.html)
+- [Part 3: Burying Mines](/2019/08/22/building-a-unity-3d-minesweeper-game-step-by-step-part-3-burying-mines.html)
