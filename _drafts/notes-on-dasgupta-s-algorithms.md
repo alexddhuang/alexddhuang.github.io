@@ -26,3 +26,7 @@ $$
 It is easy to see that for all $b \geq 2$, this value is greater than 0.
 
 Now let us see the algorithm of addition of two positioning numbers. Since each of individual sum is a two-digit number, *the carry is always a single digit*. Then we can know that the time complexity of addition is $O(n)$, where $n$ is the length of digits.
+
+#### 1.1.2 Multiplication and division
+
+$\underbrace{O(n)+O(n)+\cdots+O(n)}_{n-1}=O(n^2)$
