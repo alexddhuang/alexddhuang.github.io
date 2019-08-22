@@ -1,7 +1,7 @@
 ---
 title: "Building a Unity 3D Minesweeper Game Step by Step Part 1: Building the Scene"
 date: 2019-08-21 17:53:49 +0800
-date_modified: 2019-08-22 10:59:05 +0800
+date_modified: 2019-08-22 14:15:57 +0800
 categories: IT
 tags: csharp game-development unity
 ---
@@ -44,3 +44,7 @@ Open the navigation window (Window -> AI -> Navigation). Open the Objet tab, the
 {% include image.html name="navigation.png" %}
 
 Now, our first part of this tutorial is done, let's take a rest and drink a cup of coffee.
+
+## Further Reading
+
+- [Part 2: The Character](/2019/08/22/building-a-unity-3d-minesweeper-game-step-by-step-part-2-the-character.html)
