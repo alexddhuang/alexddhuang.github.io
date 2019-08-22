@@ -1,7 +1,7 @@
 ---
 title: "Building a Unity 3D Minesweeper Game Step by Step Part 1: Building the Scene"
 date: 2019-08-21 17:53:49 +0800
-date_modified: 2019-08-22 17:54:17 +0800
+date_modified: 2019-08-22 19:46:23 +0800
 categories: IT
 tags: csharp game-dev unity
 ---
@@ -20,8 +20,8 @@ Create a Cube object in the sample scene, name it `Brick` and make it to a Prefa
 
 Next, we need to draw a texture on the surface of `Brick`. Download below two files and import them into the `Textures` folder:
 
-- [`MinesweeperSpritesheet.png`](https://github.com/alexddhuang/Minesweeper3D/blob/part1/Assets/Textures/MinesweeperSpritesheet.png)
-- [`MinesweeperSpritesheet.png.meta`](https://github.com/alexddhuang/Minesweeper3D/blob/part1/Assets/Textures/MinesweeperSpritesheet.png.meta)
+- [`MinesweeperSpritesheet.png`](https://github.com/alexddhuang/Minesweeper3D/blob/master/Assets/Resources/Sprites/MinesweeperSpritesheet.png)
+- [`MinesweeperSpritesheet.png.meta`](https://github.com/alexddhuang/Minesweeper3D/blob/master/Assets/Resources/Sprites/MinesweeperSpritesheet.png.meta)
 
 Please don't forget to download and import `MinesweeperSpritesheet.png.meta` except that you want to manually slice sprites from this sprites sheet by yourself.
 

@@ -1,7 +1,7 @@
 ---
 title: "Building a Unity 3D Minesweeper Game Step by Step Part 3: Burying Mines"
 date: 2019-08-22 17:51:32 +0800
-date_modified: 2019-08-22 17:54:42 +0800
+date_modified: 2019-08-22 19:46:31 +0800
 categories: IT
 tags: csharp game-dev unity
 ---
@@ -58,13 +58,13 @@ Next, we write a method to show the secret of a `Brick`: If it has a mine, showi
 private static Dictionary<string, Sprite> mTileImages;
 ```
 
-Then write a method `BuildSpritesMap` and invoke it in the `Start`.
+Then write a method `BuildSpritesMap` and invoke it in the `Start` (Make sure that `MinesweeperSpritesheet.png` is placed in the folder `Resources/Sprites`).
 
 ```c#
 public static void BuildSpritesMap()
 {
     if (mTileImages == null) {
-        Object[] sprites = AssetDatabase.LoadAllAssetRepresentationsAtPath("Assets/Textures/MinesweeperSpritesheet.png");
+        Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites/MinesweeperSpritesheet");
         mTileImages = new Dictionary<string, Sprite>();
         for (int i = 0; i < sprites.Length; i++) {
             mTileImages.Add(sprites[i].name, (Sprite) sprites[i]);
