@@ -2,6 +2,8 @@ title: Alexddhuang's Blog
 author: Alexander D Huang
 email: alexddhuang@gmail.com
 
+timezone: +0800
+
 permalink: /:year/:month/:day/:title.html
 
 defaults:
