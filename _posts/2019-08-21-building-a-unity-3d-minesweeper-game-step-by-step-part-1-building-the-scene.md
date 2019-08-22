@@ -1,12 +1,12 @@
 ---
 title: "Building a Unity 3D Minesweeper Game Step by Step Part 1: Building the Scene"
 date: 2019-08-21 17:53:49 +0800
-date_modified: 2019-08-22 19:46:23 +0800
+date_modified: 2019-08-22 21:03:08 +0800
 categories: IT
 tags: csharp game-dev unity
 ---
 
-In this tutorial, we are going to try to build a 3D [Minesweeper](https://en.wikipedia.org/wiki/Minesweeper_(video_game)) game in Unity. This is part 1.
+In this tutorial, we are going to try to build a 3D [Minesweeper](https://en.wikipedia.org/wiki/Minesweeper_(video_game)) game in Unity. This is part 1. The complete project is [here](https://github.com/alexddhuang/Minesweeper3D).
 
 Minesweeper is a classic single-player puzzle game. The objective of the game is to clear all hidden "mines" on a board without detonating them. There are many variations of this game exist on many platforms. Most of them are 2D games. However, in this tutorial, we are going to make a 3D version.
 
