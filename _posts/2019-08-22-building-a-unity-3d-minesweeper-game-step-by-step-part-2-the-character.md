@@ -99,3 +99,4 @@ public class CameraFollower : MonoBehaviour
 ## Further Reading
 
 - [Part 1: Building the Scene](/2019/08/21/building-a-unity-3d-minesweeper-game-step-by-step-part-1-building-the-scene.html)
+- [Part 2: The Character](/2019/08/22/building-a-unity-3d-minesweeper-game-step-by-step-part-2-the-character.html)
