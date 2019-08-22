@@ -1,7 +1,7 @@
 ---
 title: "Building a Unity 3D Minesweeper Game Step by Step Part 3: Burying Mines"
 date: 2019-08-22 17:51:32 +0800
-date_modified: 2019-08-22 19:46:31 +0800
+date_modified: 2019-08-22 20:29:04 +0800
 categories: IT
 tags: csharp game-dev unity
 ---
@@ -51,6 +51,8 @@ public class Brick : MonoBehaviour
 It has two public fields. `mine` indicates whether `Brick` has a mine. `radius` is used to detect whether another `Brick` is its neighbor, and the default value is `1.42f`.
 
 Now you can select some `Brick`s in the scene to tick the Mine checkbox of them.
+
+NOTE: For improving the runtime performance, you can also make `mNeighbors` to be public, and invoke `FindNeighbors` in the [`OnValidate`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnValidate.html) method instead of in `Start` so that this work is given to the editor.
 
 Next, we write a method to show the secret of a `Brick`: If it has a mine, showing a bomb, else showing the number of mines in its neighbors. Before that, we need to build a sprites map. Add the following line inside the `Brick` class:
 
