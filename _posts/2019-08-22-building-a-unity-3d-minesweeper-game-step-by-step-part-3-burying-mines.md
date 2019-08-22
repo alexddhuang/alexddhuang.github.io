@@ -1,12 +1,12 @@
 ---
 title: "Building a Unity 3D Minesweeper Game Step by Step Part 3: Burying Mines"
 date: 2019-08-22 17:51:32 +0800
-date_modified: 2019-08-22 20:29:04 +0800
+date_modified: 2019-08-22 21:02:58 +0800
 categories: IT
 tags: csharp game-dev unity
 ---
 
-In this tutorial, we are going to try to build a 3D [Minesweeper](https://en.wikipedia.org/wiki/Minesweeper_(video_game)) game in Unity. This is part 3.
+In this tutorial, we are going to try to build a 3D [Minesweeper](https://en.wikipedia.org/wiki/Minesweeper_(video_game)) game in Unity. This is part 3. The complete project is [here](https://github.com/alexddhuang/Minesweeper3D).
 
 Modify the `Brick` script as below.
 

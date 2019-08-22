@@ -1,12 +1,12 @@
 ---
 title: "Building a Unity 3D Minesweeper Game Step by Step Part 2: The Character"
 date: 2019-08-22 14:12:47 +0800
-date_modified: 2019-08-22 17:54:30 +0800
+date_modified: 2019-08-22 21:03:04 +0800
 categories: IT
 tags: csharp game-dev unity
 ---
 
-In this tutorial, we are going to try to build a 3D [Minesweeper](https://en.wikipedia.org/wiki/Minesweeper_(video_game)) game in Unity. This is part 2.
+In this tutorial, we are going to try to build a 3D [Minesweeper](https://en.wikipedia.org/wiki/Minesweeper_(video_game)) game in Unity. This is part 2. The complete project is [here](https://github.com/alexddhuang/Minesweeper3D).
 
 In this part, we are going to create a character and a C# script which responses to the user input and controls the movement of the character.
 
