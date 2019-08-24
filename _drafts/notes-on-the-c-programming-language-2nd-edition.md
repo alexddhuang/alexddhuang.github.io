@@ -116,3 +116,48 @@ main()
     printf("%d %d %d\n", nb, nt, nl);
 }
 ```
+
+> Exercise 1-9. Write a program to copy its input to its output, replacing each string of one or more blanks by a single blank.
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int inblank = 0;
+    int c;
+
+    while ((c = getchar()) != EOF) {
+        if (c == ' ') {
+            if (!inblank)
+                putchar(c);
+            inblank = 1;
+        } else {
+            putchar(c);
+            inblank = 0;
+        }
+    }
+}
+```
+
+> Exercise 1-10. Write a program to copy its input to its output, replacing each tab by `\t` each backspace by `\b`, and each back slash by `\\`. This makes tabs and backspaces visible in an unambiguous way.
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int c;
+
+    while ((c = getchar()) != EOF) {
+        if (c == '\\')
+            printf("\\\\");
+        else if (c == '\b')
+            printf("\\b");
+        else if (c == '\t')
+            printf("\\t");
+        else 
+            putchar(c);
+    }
+}
+```
