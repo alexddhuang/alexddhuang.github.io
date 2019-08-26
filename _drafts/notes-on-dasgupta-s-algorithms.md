@@ -30,3 +30,25 @@ Now let us see the algorithm of addition of two positioning numbers. Since each 
 #### 1.1.2 Multiplication and division
 
 $\underbrace{O(n)+O(n)+\cdots+O(n)}_{n-1}=O(n^2)$
+
+### 1.2 Modular arithmetic
+
+*Substitution rule*: If $x\equiv x'(\mod N)$ and $y \equiv y' (\mod N)$, then:
+
+$$
+x+y \equiv x'+y' (\mod N) \text{ and } xy \equiv x'y' (\mod N)
+$$
+
+Proof: Suppose there exist two integers $p$ and $q$ such that $x-x' = pN$ and $y-y' = qN$. Then
+
+$$
+(x+y) - (x'+y') = (x-x') + (y-y') = (p + q)N \\
+\Rightarrow x+y \equiv x'+y' (\mod N)
+$$
+
+$$
+xy - x'y' = xy - x'y' + xy' - xy' = x(y-y') + y'(x-x') = (xq + y'p)N \\
+\Rightarrow xy \equiv x'y' (\mod N)
+$$
+
+#### 1.2.2 Modular exponentiation
