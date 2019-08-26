@@ -258,4 +258,12 @@ $$
 
 - Large numbers
 
-    For some very large numbers, because of *rounding errors*, the significand may be cut off, so that $\left \| g^2 - x \right \|$ will be never smaller than $e$, i.e. the computation of `sqrt` will never end.
+    For some very large numbers, the distance between two floating-point numbers may be larger than the error, so that the computation of `sqrt` will never end.
+
+    For example, suppose the length of the significand of floating-point numbers is 7, then 
+
+    $$
+    1.234567\times 10^5 - 1.234566\times 10^5 = 0.1 > 0.001
+    $$
+
+    In this case, smaller error would makes the situation worse.
