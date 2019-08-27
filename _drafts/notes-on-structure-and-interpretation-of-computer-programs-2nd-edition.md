@@ -114,6 +114,28 @@ $$
 ```
 
 #### Procedures as Black-Box Abstractions
+
+We can use *block structure* and *lexical scoping* to rewrite `sqrt`:
+
+```scheme
+(define (sqrt x)
+  (define (good-enough? guess)
+    (< (abs (- (square guess) x)) 0.001))
+  (define (improve guess)
+    (average guess (/ x guess)))
+  (define (sqrt-iter guess)
+    (if (good-enough? guess)
+        guess
+        (sqrt-iter (improve guess))))
+  (sqrt-iter 1.0))
+
+(define (average x y)
+  (/ (+ x y) 2))
+  
+(define (abs x) (if (< x 0) (- 0 x) x))
+(define (square x) (* x x))
+```
+
 ### Procedures and the Processes They Generate
 #### Linear Recursion and Iteration
 #### Tree Recursion
