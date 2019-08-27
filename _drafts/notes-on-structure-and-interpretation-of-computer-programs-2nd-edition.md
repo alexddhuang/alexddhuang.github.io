@@ -252,18 +252,79 @@ $$
     ; 0.03135649010771716
     (sqrt 0.000001)
     ; 0.031260655525445276
-    (sqrt 0.0000001)
-    ; 0.03125106561775382
     ```
 
 - Large numbers
 
-    For some very large numbers, the distance between two floating-point numbers may be larger than the error, so that the computation of `sqrt` will never end.
+    For some very large numbers, the distance between two floating-point numbers may be larger than the error, so that the computation of `sqrt` will never end. For example,
 
-    For example, suppose the length of the significand of floating-point numbers is 7, then 
+    ```scheme
+    (sqrt 12345678901234) ; never end
+    ```
+
+    Here is a virtual example to illustrate this case: Suppose the length of the significand of floating-point numbers is 7, then 
 
     $$
     1.234567\times 10^5 - 1.234566\times 10^5 = 0.1 > 0.001
     $$
 
     In this case, smaller error would makes the situation worse.
+
+We can see that both of these two problems are caused by $x$, so we shouldn't use it in `good-enough?`. Instead, we see how guess changes from one iteration to the next.
+
+First, rewrite `good-enough?`
+
+```scheme
+(define (good-enough? new-guess old-guess)
+  (< (abs (- new-guess old-guess)) 0.001))
+```
+
+Then, modify `sqrt-iter`
+
+```scheme
+(define (sqrt-iter guess x)
+  (if (good-enough? (improve guess x) guess)
+      (improve guess x)
+      (sqrt-iter (improve guess x)
+                 x)))
+```
+
+```scheme
+(sqrt 0.000001)
+; 0.0012961915927068783
+(sqrt 12345678901234)
+; 3513641.8288200637
+```
+
+### Exercise 1.8
+
+> Newton's method for cube roots is based on the fact that if `y` is an approximation to the cube root of `x`, then a better approximation is given by the value
+>
+> $$
+> \frac{x/y^2 + 2y}{3}
+> $$
+>
+> Use this formula to implement a cube-root procedure analogous to the square-root procedure. 
+
+```scheme
+(define (cbrt-iter guess x)
+  (if (good-enough? (improve guess x) guess)
+      (improve guess x)
+      (cbrt-iter (improve guess x)
+                 x)))
+
+(define (improve guess x)
+  (triverage (* 2 guess) (/ x (square guess))))
+
+(define (triverage x y)
+  (/ (+ x y) 3))
+
+(define (good-enough? new-guess old-guess)
+  (< (abs (- new-guess old-guess)) 0.001))
+
+(define (abs x) (if (< x 0) (- 0 x) x))
+(define (square x) (* x x))
+
+(define (cbrt x)
+  (cbrt-iter 1.0 x))
+```
