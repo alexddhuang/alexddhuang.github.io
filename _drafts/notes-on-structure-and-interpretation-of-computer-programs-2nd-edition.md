@@ -138,6 +138,57 @@ We can use *block structure* and *lexical scoping* to rewrite `sqrt`:
 
 ### Procedures and the Processes They Generate
 #### Linear Recursion and Iteration
+
+A *linear recursive process* builds up a chain of *deferred operations*, for example
+
+```scheme
+(define (factorial n)
+  (if (= n 1)
+      1
+      (* n (factorial (- n 1)))))
+
+(factorial 6)
+(* 6 (factorial 5))
+(* 6 (* 5 (factorial 4)))
+(* 6 (* 5 (* 4 (factorial 3))))
+(* 6 (* 5 (* 4 (* 3 (factorial 2)))))
+(* 6 (* 5 (* 4 (* 3 (* 2 (factorial 1))))))
+(* 6 (* 5 (* 4 (* 3 (* 2 1)))))
+(* 6 (* 5 (* 4 (* 3 2))))
+(* 6 (* 5 (* 4 6)))
+(* 6 (* 5 24))
+(* 6 120)
+720
+```
+
+A *linear iterative process* keeps a fixed number of *state variables* to record the state, for example
+
+```scheme
+(define (factorial n)
+  (fact-iter 1 1 n))
+
+(define (fact-iter product counter max-count)
+  (if (> counter max-count)
+      product
+      (fact-iter (* counter product)
+                 (+ counter 1)
+                 max-count)))
+
+(factorial 6)
+(fact-iter 1 1 6)
+(fact-iter 1 2 6)
+(fact-iter 2 3 6)
+(fact-iter 6 4 6)
+(fact-iter 24 5 6)
+(fact-iter 120 6 6)
+(fact-iter 720 7 6)
+720
+```
+
+where the `counter` is the state variable.
+
+Be careful of the difference between *recursive processes* and *recursive procedures*. Both of the above two examples are described in recursive procedures. The recursive procedure is a notion on the syntax, it means that a procedure refers to itself.
+
 #### Tree Recursion
 #### Orders of Growth
 #### Exponentiation
