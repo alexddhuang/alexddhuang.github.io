@@ -25,3 +25,5 @@ There are two conventions of ordering the bytes of an object:
 In what cases, byte ordering should be considered by programmers?
 
 - When binary data are communicated over a network between different machines. For example, in the .Net platform, before the client sending an integer to the server, it needs to invoke [`System.Net.IPAddress.HostToNetworkOrder`](https://docs.microsoft.com/en-us/dotnet/api/system.net.ipaddress.hosttonetworkorder) to convert the integer from host byte order to network byte order; Similarly, after the server receiving the integer, it needs to invoke [`System.Net.IPAddress.NetworkToHostOrder`](https://docs.microsoft.com/en-us/dotnet/api/system.net.ipaddress.networktohostorder).
+- When inspecting machine-level programs.
+- When programs are written that circumvent the normal type system. An example: [`show-bytes.c`](https://github.com/alexddhuang/csapp3e/blob/master/ch02/show-bytes.c).
