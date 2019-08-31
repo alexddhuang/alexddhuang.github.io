@@ -11,10 +11,6 @@ toc: true
 
 ### 2.1 Information Storage
 
-#### 2.1.1 Hexadecimal Notation
-
-#### 2.1.2 Data Sizes
-
 #### 2.1.3 Addressing and Byte Ordering
 
 There are two conventions of ordering the bytes of an object:
