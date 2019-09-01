@@ -1,6 +1,7 @@
 ---
 title: "Start Blog"
 date: 2019-08-13 19:54:51 +0800
+date_modified: 2019-09-02 00:00:23 +0800
 category: IT
 tags: blog
 ---
@@ -26,7 +27,7 @@ plugins:
 remote_theme: alexddhuang/minima@alexddhuang
 ```
 
-Now, if the orginal repo of Minima updates, I can fetch all those changes and merge them into the `alexddhuang` branch by using Git:
+Now, if the original repo of Minima updates, I can fetch all those changes and merge them into the `alexddhuang` branch by using Git:
 
 ```bash
 $ git checkout alexddhuang
