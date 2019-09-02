@@ -1,6 +1,6 @@
 ---
 title: "菲赫金哥尔茨《微积分学教程》（第一卷）笔记"
-categories: IT
+categories: Mathematics
 tags: calculus
 toc: true
 ---
