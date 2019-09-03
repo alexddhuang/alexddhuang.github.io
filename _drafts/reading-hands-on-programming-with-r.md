@@ -125,3 +125,20 @@ roll <- function(bones = 1:6) {
     sum(dice)
 }
 ```
+
+### 3 Packages and Help Pages
+
+#### 3.1 Packages
+
+Run `install.packages("ggplot2")` to install the [`ggplot2`](https://ggplot2.tidyverse.org/) package, which is a system for declaratively creating graphics.
+
+Run `library("ggplot2")` to load it.
+
+```r
+x <- c(-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1)
+qplot(x, x^3)
+```
+
+{% include image.html name="xxx.png" width="50%" %}
+
+If you pass only one vector to `qplot(x, binwidth = w)`, it will draw a histogram.
