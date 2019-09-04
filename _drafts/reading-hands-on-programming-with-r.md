@@ -141,4 +141,20 @@ qplot(x, x^3)
 
 {% include image.html name="xxx.png" width="50%" %}
 
-If you pass only one vector to `qplot(x, binwidth = w)`, it will draw a histogram.
+If you pass only one vector to `qplot`, it will draw a histogram.
+
+```r
+x <- c(1, 2, 2, 2, 3, 3)
+qplot(x, binwidth = 1)
+```
+
+{% include image.html name="histogram1.png" width="50%" %}
+
+Now we use `qplot` to draw a histogram of rolling dice.
+
+```r
+rolls <- replicate(10000, roll())
+qplot(rolls, binwidth = 1)
+```
+
+{% include image.html name="rolls-histogram.png" width="50%" %}
