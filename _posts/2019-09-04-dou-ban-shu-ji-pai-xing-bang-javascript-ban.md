@@ -1,6 +1,7 @@
 ---
 title: "豆瓣书籍排行榜：JavaScript 版"
 date: 2019-09-04 20:10:25 +0800
+date_modified: 2019-09-07 02:21:23 +0800
 categories: IT
 tags: douban books bayesian-average javascript
 ---
