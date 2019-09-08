@@ -11,10 +11,15 @@ toc: true
 
 This book takes an abstract view of vector spaces. This book is a good preparation for functional analysis.
 
+A *vector space X* over a *field K* is a set in which two operations are defined. They are *addition* and *multiplication*.
+
+-------
+
 > EXERCISE 1. Show that the zero of vector addition is unique.
 
-Suppose there are two zeros $0$ and $0'$, then we have $0 + 0' = 0$ and $0' + 0 = 0'$, and because of the *commutative law* of vector additions, we have
+Suppose there are two zeros of vector $\vec{0}$ and $\vec{0}'$, then we have $\vec{0} + \vec{0}' = \vec{0}$ and $\vec{0}' + \vec{0} = \vec{0}'$, and because of the *commutative law* of vector additions, we have
 
 $$
-0 + 0' = 0' + 0 \Rightarrow 0 = 0'
+\vec{0} + \vec{0}' = \vec{0}' + \vec{0} \Rightarrow \vec{0} = \vec{0}'
 $$
+
