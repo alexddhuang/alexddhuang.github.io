@@ -49,6 +49,7 @@ remote_theme: alexddhuang/minima@alexddhuang
 header_pages:
   - categories.md
   - tags.md
+  - portfolios.md
 
 copyright: >    
   © <!--copyyears--> <!--author-->; All rights reserved.
