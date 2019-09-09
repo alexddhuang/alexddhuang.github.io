@@ -31,3 +31,18 @@ $$
 T_n = 2^{n} - 1
 $$
 
+### 1.2 Lines in the Plane
+
+What is the maximum number $L_n$ of regions defined by $n$ lines in the plane?
+
+The $n$-th line (for $n > 0$) increases the number of regions by $k$ if and only if it splits $k$ of the old regions, and it splits $k$ old regions if and only if it hits the previous lines in $k − 1$ different places. So we get
+
+$$
+L_n = L_{n-1} + n
+$$
+
+Combining this formula with the case $L_0=1$, we finally have
+
+$$
+L_n = \frac{n(n+1)}{2} + 1
+$$
