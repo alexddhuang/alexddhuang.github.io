@@ -46,3 +46,27 @@ Combining this formula with the case $L_0=1$, we finally have
 $$
 L_n = \frac{n(n+1)}{2} + 1
 $$
+
+### 1.3 The Josephus Problem
+
+We start with n people numbered 1 to n around a circle, and we eliminate every second remaining person until only one survives. We note the survivor's number as $J(n)$.
+
+Suppose that we have $2n$ people, after the first go-round, we're left with 
+
+{% include image.html name="josephus-2n.png" width="30%" %}
+
+If we renumber these people from 1 to n and continue the next round, we can get this relation:
+
+$$
+J(2n) = 2J(n) - 1
+$$
+
+Suppose that we have $2n+1$ people, after the first go-round, we're left with
+
+{% include image.html name="josephus-2n+1.png" width="30%" %}
+
+Similarly, we get that
+
+$$
+J(2n+1) = 2J(n) + 1
+$$
