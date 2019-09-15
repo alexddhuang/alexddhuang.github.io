@@ -33,4 +33,50 @@ $$
 
 where $a$ and $b$ are constants.
 
-How to proove these are the only (twice differentiable) solutions?
+How to prove these are the only (twice differentiable) solutions? First, suppose $f(t)$ is a solution to this equation, then we write it in a form of
+
+$$
+f(t) = a(t)\cos{ct} + b(t)\sin{ct}
+$$
+
+So our job becomes to prove that $a(t)$ and $b(t)$ are constants. If they are constants, we have
+
+$$
+f'(t) = -ca\sin{ct} + cb\cos{ct} \\
+-c^{-1}f'(t) = a\sin{ct} - b\cos{ct} \\
+f(t)\cos{ct} - c^{-1}f'(t)\sin{ct} = a \\
+f(t)\sin{ct} + c^{-1}f'(t)\cos{ct} = b
+$$
+
+So we get an inspiration that we may can prove that $g(t)=f(t)\cos{ct} - c^{-1}f'(t)\sin{ct}$ and $h(t)=f(t)\sin{ct} + c^{-1}f'(t)\cos{ct}$ are constants. Let's do it.
+
+$$
+\begin{aligned}
+g'(t) &= f'(t) \cos{ct} - cf(t) \sin{ct} - c^{-1}f''(t)\sin{ct} - f'(t)\cos{ct} \\
+&= - cf(t) \sin{ct} - c^{-1}f''(t)\sin{ct} \\
+&= - cf(t) \sin{ct} - c^{-1}(-c^2f(t))\sin{ct} \\
+&= 0
+\end{aligned}
+$$
+
+Similarly, we can get that
+
+$$
+h'(t) = 0
+$$
+
+Now we know that both $g(t)$ and $h(t)$ are constants, we respectively set them to $a$ and $b$.
+
+$$
+g(t)=f(t)\cos{ct} - c^{-1}f'(t)\sin{ct} = a \\
+h(t)=f(t)\sin{ct} + c^{-1}f'(t)\cos{ct} = b
+$$
+
+Finally, we have
+
+$$
+\begin{aligned}
+a\cos{ct} + b\sin{ct} &= f(t)\cos^2{ct} - c^{-1}f'(t)\sin{ct}\cos{ct} + f(t)\sin^2{ct} + c^{-1}f'(t)\sin{ct}\cos{ct} \\
+&= f(t)
+\end{aligned}
+$$
