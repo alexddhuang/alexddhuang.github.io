@@ -1,6 +1,7 @@
 ---
 title: "Reading Ellan Jiang's Unity GameFramework: The Entry"
 date: 2019-09-17 20:28:22 +0800
+date_modified: 2019-09-18 11:08:47 +0800
 categories: IT
 tags: unity game-dev csharp
 ---
@@ -98,3 +99,7 @@ private static GameFrameworkModule CreateModule(Type moduleType)
     return module;
 }
 ```
+
+## Further Reading
+
+- [Table of Contents](/2019/09/17/reading-ellan-jiang-s-unity-gameframework.html)
