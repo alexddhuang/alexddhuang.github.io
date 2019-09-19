@@ -17,3 +17,11 @@ Here are some notes on [*Clojure Programming: Practical Lisp for the Java World*
 - *Clojure offers innovative solutions to the challenges inherent in concurrency and parallelization*.
 - *Clojure is a dynamic programming language*.
 
+### Homoiconicity
+
+Homoiconicity means *code-as-data*.
+
+> The fact that Clojure programs are represented as data means that Clojure programs can be used to write and transform other Clojure programs, trivially so.
+
+## Chapter 2. Functional Programming
+
