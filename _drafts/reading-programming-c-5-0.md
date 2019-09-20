@@ -28,4 +28,15 @@ C# has a powerful runtime ([CLR](https://docs.microsoft.com/en-us/dotnet/standar
 - Thread management
 - Automated memory manage­ment
 
-## Chapter 2. Basic Coding in C#
+## Chapter 3. Types
+
+### Classes
+
+#### Static Classes
+
+If you want to prevent users to create any instance of your class, you can declare your class as `static`. A static class only has static fields and methods.
+
+#### Reference Types
+
+Types defined by `class` are all *reference types*. A variable of the reference type does not hold the value, but a reference to the value. If you assign this variable to another one, you are copying the reference, but not the value.
+
