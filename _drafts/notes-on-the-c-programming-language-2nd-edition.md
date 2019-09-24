@@ -15,6 +15,24 @@ toc: true
 > 
 > -- Preface to the First Edition
 
+## Character Input and Output
+
+> The model of input and output supported by the standard library is very simple. Text input or output, regardless of where it originates or where it goes to, is dealt with as streams of characters. A *text stream* is a sequence of characters divided into lines; each line consists of zero and more characters followed by a newline character. It is the responsibility of the library to make each input or output stream conform to this model; the C programmer using the library need not worry about how lines are represented outside the program.
+
+### File Copying
+
+```c
+#include <stdio.h>
+
+main()
+{
+    int c;
+
+    while ((c = getchar()) != EOF)
+        putchar(c);
+}
+```
+
 ## Solutions to Exercises
 
 ### Exercise 1-2
