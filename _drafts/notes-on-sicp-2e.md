@@ -12,3 +12,16 @@ toc: true
 > We are about to study the idea of a *computational process*. Computational processes are abstract beings that inhabit computers. As they evolve, processes manipulate other abstract things called *data*. The evolution of a process is directed by a pattern of rules called a *program*.
 
 This book uses [Lisp](https://en.wikipedia.org/wiki/Lisp_(programming_language)) as the language for describing programs. The reason why the authors of this book chose Lisp is one of its features: *Procedures* can themselves be represented and manipulated as *data*. In modern words, it's said that procedures in Lisp are the [first-class citizen](https://en.wikipedia.org/wiki/First-class_citizen).
+
+## Procedures
+
+### The Elements of Programming
+
+#### Expressions
+
+*Expressions* are some kinds of objects that can be evaluated by the interpreter. Lisp provides some kinds of *primitive expressions*, for example, numbers. Primitive expressions may be combined with an expression representing a primitive procedure (such as `+` or `*`) to form a *compound expression* that represents the application of the procedure.
+
+```scheme
+(+ 10 8)
+18
+```
