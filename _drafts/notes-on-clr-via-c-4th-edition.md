@@ -5,4 +5,4 @@ tags: csharp dotnet
 toc: true
 ---
 
-[*CLR via C#*, 4th Edition](https://www.amazon.com/CLR-via-4th-Developer-Reference/dp/0735667454). Jeffrey Richter. 2012.
+[*CLR via C#*, 4th Edition](https://www.amazon.com/CLR-via-4th-Developer-Reference/dp/0735667454). [Jeffrey Richter](https://twitter.com/jeffrichter). 2012.
