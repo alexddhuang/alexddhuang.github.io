@@ -73,3 +73,53 @@ The operating system has two primary purposes:
 For achieving these goals, operating systems provide three layers of abstraction:
 
 {% include image.html name="operating-system-abstractions.png" width="50%" %}
+
+- Processes
+
+    A *process* is the operating system's abstraction for a running program. The operating system keeps track of all the state information which is called the *context*. At any point in time, a *uniprocessor system* can only execute the code for a single process. When the operating system decides to run another process, it performs a *context switch* by saving the context of the current process.
+
+- Threads
+
+    A process can consist of multiple execution units, called *threads*. Comparing with processes, threads have some benefits on concurrent programming:
+
+    - It's easier to share data between multiple threads than between multiple processes.
+    - Threads are typically more efficient than processes.
+    - Multi-threading is a way to make programs run faster when multiple processors are available.
+
+- Virtual Memory
+
+    > *Virtual memory* is an abstraction that provides each process with the illusion that it has exclusive use of the main memory.
+
+- Files
+
+    > A *file* is a sequence of bytes, nothing more and nothing less.
+
+### 1.9 Important Themes
+
+#### 1.9.1 Amdahl’s Law
+
+> [Gene Amdahl](https://en.wikipedia.org/wiki/Gene_Amdahl), one of the early pioneers in computing, made a simple but insightful observation about the effectiveness of improving the performance of one part of a system. This observation has come to be known as *Amdahl’s law*. The main idea is that when we speed up one part of a system, the effect on the overall system performance depends on both how significant this part was and how much it sped up.
+
+Consider a system in which executing some application requires time $T_{old}$. Suppose some part of the system requires a fraction $\alpha$ of this time. After improving the performance of this part by a factor $k$, the overall execution time is
+
+$$
+\begin{aligned}
+T_{new} &= \frac{\alpha}{k}T_{old} + (1-\alpha)T_{old} \\
+&= (\frac{\alpha}{k} + (1-\alpha))T_{old} 
+\end{aligned}
+$$
+
+So the speedup $S=T_{old}/T_{new}$ equals
+
+$$
+\frac{1}{1-\alpha+\alpha / k}
+$$
+
+Let $\alpha=80\%$ and $k=10$, we get that $S\approx3.57$. 
+
+> Even though we made a substantial improvement to a major part of the system, our net speedup was significantly less than the speedup for the one part.
+
+#### 1.9.2 Concurrency and Parallelism
+
+- *Concurrency*: the general concept of a system with multiple, simultaneous activities.
+- *Parallelism*: the use of concurrency to make a system run faster.
