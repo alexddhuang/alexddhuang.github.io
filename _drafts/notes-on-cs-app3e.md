@@ -123,3 +123,74 @@ Let $\alpha=80\%$ and $k=10$, we get that $S\approx3.57$.
 
 - *Concurrency*: the general concept of a system with multiple, simultaneous activities.
 - *Parallelism*: the use of concurrency to make a system run faster.
+
+## Part I. Program Structure and Execution
+
+### Chapter 2. Representing and Manipulating Information
+
+#### 2.1 Information Storage
+
+> A machine-level program views memory as a very large array of bytes, referred to as *virtual memory*. Every byte of memory is identified by a unique number, known as its *address*, and the set of all possible addresses is known as the *virtual address space*.
+
+As virtual memory is the operating system's abstraction for main memory and I/O devices, how does a program access memory in a machine without an operating system?
+
+There are two conventions of bytes ordering:
+
+- Little-endian: the least significant byte comes first.
+- Big-endian: the most significant byte comes first.
+
+When does the bytes ordering become an important issue?
+
+- When binary data are communicated over a network between different machines.
+- When looking at the byte sequences representing integer data.
+- When programs are written that circumvent the normal type system.
+
+    For example, using casting to access and print the byte representations of different program objects:
+
+    ```c
+    #include <stdio.h>
+
+    typedef unsigned char *byte_pointer;
+
+    void show_bytes(byte_pointer start, size_t len)
+    {
+        int i;
+        for (i = 0; i < len; i++)
+            printf(" %02x", start[i]);
+        printf("\n");
+    }
+
+    void show_int(int x)
+    {
+        show_bytes((byte_pointer) &x, sizeof(x));
+    }
+
+    void show_float(float x)
+    {
+        show_bytes((byte_pointer) &x, sizeof(x));
+    }
+
+    void show_pointer(void *x)
+    {
+        show_bytes((byte_pointer) &x, sizeof(x));
+    }
+    ```
+
+    A test:
+
+    ```c
+    int ival = 1;
+    float fval = (float) ival;
+    int *pval = &ival;
+    show_int(ival);
+    show_float(fval);
+    show_pointer(pval);
+    ```
+
+    When it ran on my computer (macOS v10.14.3), it produced:
+
+    ```
+     01 00 00 00
+     00 00 80 3f
+     5c aa d6 e3 fe 7f 00 00
+    ```
