@@ -194,3 +194,43 @@ When does the bytes ordering become an important issue?
      00 00 80 3f
      5c aa d6 e3 fe 7f 00 00
     ```
+
+#### 2.2 Integer Representations
+
+- Unsigned Encodings
+
+    $$
+    B2U_w(\vec{x}) \doteq \sum_{i=0}^{w-1}x_i 2^i
+    $$
+
+    $UMin_w = 0$, $UMax_w = 2^{w} - 1$.
+
+- Two’s-Complement Encodings
+
+    $$
+    B2T_w(\vec{x}) \doteq -x_{w-1}2^{w-1} + \sum_{i=0}^{w-2}x_i 2^i
+    $$
+
+    $TMin_w = -2^{w-1}$, $TMax_w = 2^{w-1} - 1$.
+
+- Conversions between Signed and Unsigned
+
+    $$
+    B2U_w(\vec{x}) - B2T_w(\vec{x}) = x_{w-1}2^{w}
+    $$
+
+    $$
+    T2U_w(x) = 
+    \begin{cases}
+    x + 2^w, & x < 0 \\
+    x, & x \geq 0
+    \end{cases}
+    $$
+
+    $$
+    U2T_w(x) =
+    \begin{cases}
+    x, & x \leq TMax_w \\
+    x - 2^w, & x > TMax_w
+    \end{cases}
+    $$
